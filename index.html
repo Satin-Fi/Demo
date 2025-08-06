@@ -21,8 +21,12 @@
             color: white;
         }
 
-        .light-theme {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+        body.show-hearts {
+            background: #000;
+        }
+
+        body.light-theme {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%) !important;
             color: #333;
         }
 
@@ -68,7 +72,7 @@
         }
 
         .btn {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            background: linear-gradient(45deg, #e91e63, #ad1457);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -76,23 +80,23 @@
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
             margin: 10px;
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.6);
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.6);
         }
 
         .decoration-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(45deg, #9c27b0, #673ab7);
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
         }
 
         .balloon-btn {
-            background: linear-gradient(45deg, #f093fb, #f5576c);
-            box-shadow: 0 5px 15px rgba(240, 147, 251, 0.4);
+            background: linear-gradient(45deg, #ff9800, #ffc107);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
         }
 
         .music-btn {
@@ -101,14 +105,15 @@
         }
 
         .lights-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
+             background: linear-gradient(45deg, #ffffff, #f5f5f5);
+             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.6);
+             color: #333;
+         }
 
-        .lights-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.6);
-        }
+         .lights-btn:hover {
+             transform: translateY(-3px) scale(1.05);
+             box-shadow: 0 8px 25px rgba(255, 255, 255, 0.8);
+         }
 
         .banner {
             position: fixed;
@@ -595,6 +600,12 @@
             display: none;
         }
 
+        /* Hearts effect */
+        .hearts-on {
+            background: #000 !important;
+            color: white !important;
+        }
+
         /* Lights effect */
         .lights-on {
             background: #000 !important;
@@ -613,6 +624,97 @@
             0%, 100% { opacity: 0.3; transform: scale(0.8); }
             50% { opacity: 1; transform: scale(1.2); }
         }
+
+        .floating-hearts {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            color: #ff4757;
+            font-size: 12px;
+            animation: floatHeart 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .floating-hearts::before {
+            content: '♡';
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        @keyframes floatHeart {
+            0% { 
+                opacity: 0.8; 
+                transform: translateY(0) rotate(0deg) scale(0.8);
+            }
+            25% {
+                opacity: 1;
+                transform: translateY(-20px) rotate(90deg) scale(1);
+            }
+            50% {
+                opacity: 0.9;
+                transform: translateY(-40px) rotate(180deg) scale(1.1);
+            }
+            75% {
+                opacity: 0.7;
+                transform: translateY(-60px) rotate(270deg) scale(0.9);
+            }
+            100% { 
+                opacity: 0.3; 
+                transform: translateY(-80px) rotate(360deg) scale(0.6);
+            }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            animation: confettiFall 3s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .floating-confetti {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: floatConfetti 8s ease-in-out infinite;
+        }
+
+        @keyframes floatConfetti {
+            0% {
+                transform: translateY(-10vh) translateX(0px) rotate(0deg);
+                opacity: 1;
+            }
+            25% {
+                transform: translateY(25vh) translateX(20px) rotate(90deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(50vh) translateX(-20px) rotate(180deg);
+                opacity: 0.9;
+            }
+            75% {
+                transform: translateY(75vh) translateX(30px) rotate(270deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(110vh) translateX(-10px) rotate(360deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -622,12 +724,12 @@
         <div id="message3" class="message hidden">Wanna see what I made for you? 🎁</div>
         <button id="yesBtn" class="btn hidden">Yes! 💫</button>
         <div id="message4" class="message hidden">Have a look madam ji! 👑</div>
-        <button id="lightsBtn" class="btn lights-btn hidden">Lights On! 💡</button>
+        <button id="lightsBtn" class="btn lights-btn hidden">Lights On! ✨</button>
         <button id="decorationBtn" class="btn decoration-btn hidden">Add Decorations! 🎀</button>
         <button id="balloonBtn" class="btn balloon-btn hidden">Add Balloons! 🎈</button>
         <button id="musicBtn" class="btn music-btn hidden">Play Music! 🎵</button>
-        <button id="cakeCutBtn" class="btn hidden" style="background: linear-gradient(45deg, #ff6b35, #f7931e);">Let's Cut the Cake Madam Ji! 🎂</button>
-        <button id="finalMsgBtn" class="btn hidden" style="background: linear-gradient(45deg, #a8e6cf, #7fcdcd);">Well, I Have a Message for You Madam Ji! 💌</button>
+        <button id="cakeCutBtn" class="btn hidden" style="background: linear-gradient(45deg, #ff6b35, #f7931e); box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);">Let's Cut the Cake Madam Ji! 🎂</button>
+        <button id="finalMsgBtn" class="btn hidden" style="background: linear-gradient(45deg, #ff6b9d, #e91e63); box-shadow: 0 5px 15px rgba(255, 107, 157, 0.5);">Well, I Have a Message for You Madam Ji! 💌</button>
     </div>
 
     <div id="finalWish" class="final-wish hidden">
@@ -662,6 +764,50 @@
                     setTimeout(() => sparkle.remove(), 3000);
                 }, i * 100);
             }
+        }
+
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff'];
+            for(let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 1 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 50);
+            }
+        }
+
+        function createFloatingConfetti() {
+            const colors = ['#00d4ff', '#00bcd4', '#26c6da', '#4dd0e1', '#29b6f6', '#0099cc', '#0097a7', '#ff1744', '#e91e63', '#f06292', '#ff5722', '#ff6b9d', '#c2185b'];
+            
+            function addConfetti() {
+                const confetti = document.createElement('div');
+                confetti.className = 'floating-confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 12000);
+            }
+            
+            // Create initial confetti spread across screen
+            for(let i = 0; i < 25; i++) {
+                setTimeout(() => addConfetti(), i * 200);
+            }
+            
+            // Continue creating confetti every 1.5 seconds
+            setInterval(() => {
+                addConfetti();
+            }, 1500);
         }
 
         function hideElement(element) {
@@ -843,6 +989,53 @@
             document.body.appendChild(cake);
         }
 
+        let heartsActive = false;
+         let heartTimeout = null;
+         
+         function createFloatingHearts() {
+             if (!heartsActive) return;
+             
+             const heartColors = ['#ff4757', '#ff3838', '#ff6b6b', '#ff5252', '#e74c3c'];
+             for(let i = 0; i < 25; i++) {
+                 setTimeout(() => {
+                     if (!heartsActive) return;
+                     const heart = document.createElement('div');
+                     heart.className = 'floating-hearts';
+                     heart.style.left = Math.random() * 100 + '%';
+                     heart.style.top = Math.random() * 100 + '%';
+                     heart.style.color = heartColors[Math.floor(Math.random() * heartColors.length)];
+                     heart.style.animationDelay = Math.random() * 3 + 's';
+                     heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+                     document.body.appendChild(heart);
+                     
+                     // Remove heart after animation completes
+                     setTimeout(() => {
+                         if (heart.parentNode) {
+                             heart.parentNode.removeChild(heart);
+                         }
+                     }, 6000);
+                 }, i * 100);
+             }
+             
+             // Continuously create new hearts only if still active
+             if (heartsActive) {
+                 heartTimeout = setTimeout(createFloatingHearts, 8000);
+             }
+         }
+         
+         function stopFloatingHearts() {
+             heartsActive = false;
+             if (heartTimeout) {
+                 clearTimeout(heartTimeout);
+                 heartTimeout = null;
+             }
+             // Remove existing hearts
+             document.querySelectorAll('.floating-hearts').forEach(heart => {
+                 heart.style.animation = 'fadeOut 0.5s ease-out forwards';
+                 setTimeout(() => heart.remove(), 500);
+             });
+         }
+
         function createTwinkleLights() {
             const colors = ['#4caf50', '#2196f3', '#9c27b0', '#f44336', '#00bcd4', '#ff5722'];
             for(let i = 0; i < 30; i++) {
@@ -943,8 +1136,6 @@
 
         document.getElementById('yesBtn').addEventListener('click', () => {
             if(currentStep === 4) {
-                createSparkles();
-                
                 hideElement(document.getElementById('yesBtn'));
                 setTimeout(() => {
                     showElement(document.getElementById('message4'));
@@ -955,9 +1146,10 @@
 
         document.getElementById('lightsBtn').addEventListener('click', () => {
             if(currentStep === 6) {
-                // Transform to light theme
-                document.body.classList.add('light-theme');
-                createSparkles();
+                // Stop hearts and transform to light theme
+                 stopFloatingHearts();
+                 document.body.classList.remove('show-hearts');
+                 document.body.classList.add('light-theme');
                 
                 hideElement(document.getElementById('lightsBtn'));
                 setTimeout(() => {
@@ -981,7 +1173,7 @@
             if(currentStep === 7) {
                 createBanner();
                 createRibbons();
-                createSparkles();
+                createFloatingConfetti();
                 hideElement(document.getElementById('decorationBtn'));
                 setTimeout(() => {
                     showElement(document.getElementById('balloonBtn'));
@@ -1112,7 +1304,7 @@
                 hideElement(document.getElementById('finalMsgBtn'));
                 
                 // Hide all decorations and elements
-                const elementsToHide = document.querySelectorAll('.balloon, .cake, .sparkles, .banner, .twinkle-lights');
+                const elementsToHide = document.querySelectorAll('.balloon, .cake, .sparkles, .banner, .twinkle-lights, .floating-hearts');
                 elementsToHide.forEach(element => {
                     element.style.animation = 'fadeOut 1s ease-out forwards';
                     setTimeout(() => element.remove(), 1000);
@@ -1133,8 +1325,17 @@
             }
         });
 
-        // Initialize
-        setTimeout(() => createSparkles(), 500);
+        // Initialize (no sparkles in dark theme)
+        // setTimeout(() => createSparkles(), 500);
+        
+        // Start the experience with floating hearts
+         setTimeout(() => {
+             document.body.classList.add('show-hearts');
+             heartsActive = true;
+             createFloatingHearts();
+             showElement(document.getElementById('message1'));
+             currentStep = 1;
+         }, 1000);
     </script>
 </body>
 </html>
